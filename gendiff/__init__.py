@@ -60,6 +60,9 @@ def format_diff(diff):
 
 
 def generate_diff(filepath1, filepath2):
+    """
+    Generates diff of two files
+    """
     old = json.load(open(filepath1))
     new = json.load(open(filepath2))
     diff = get_diff(old, new)
