@@ -17,7 +17,7 @@ def get_diff(old, new):
             diff.append({
                 'type': 'keep',
                 'key': key,
-                'value': old.get(key)
+                'value': old_value
             })
             continue
 
