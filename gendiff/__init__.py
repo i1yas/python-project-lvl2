@@ -38,6 +38,12 @@ def get_diff(old, new):
     return diff
 
 
+def format_value(value):
+    if isinstance(value, str):
+        return value
+    return json.dumps(value)
+
+
 def format_diff(diff):
     symbol_mapping = {
         'remove': '-',
@@ -50,7 +56,9 @@ def format_diff(diff):
     for line in diff:
         type = line['type']
         symbol = symbol_mapping[type]
-        result.append(f'{tab}{symbol} {line["key"]}: {line["value"]}')
+        key = line['key']
+        value = line['value']
+        result.append(f'{tab}{symbol} {key}: {format_value(value)}')
 
     return '\n'.join([
         '{',
