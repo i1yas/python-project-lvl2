@@ -1,5 +1,7 @@
 import json
 
+from gendiff.parsers import get_parser
+
 
 def get_diff(old, new):
     old_keys = old.keys()
@@ -71,8 +73,9 @@ def generate_diff(filepath1, filepath2):
     """
     Generates diff of two files
     """
-    old = json.load(open(filepath1))
-    new = json.load(open(filepath2))
+    parse = get_parser(filepath1)
+    old = parse(open(filepath1))
+    new = parse(open(filepath2))
     diff = get_diff(old, new)
 
     return format_diff(diff)
