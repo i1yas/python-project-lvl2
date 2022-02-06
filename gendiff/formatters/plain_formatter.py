@@ -14,16 +14,16 @@ def format_line(path, line):
     path_str = '.'.join(path)
 
     if type == 'update':
-        formatted_old = format_value(line['old'])
-        formatted_new = format_value(line['new'])
-        return f'Property \'{path_str}\' was updated. From {formatted_old} to {formatted_new}'
+        old = format_value(line['old'])
+        new = format_value(line['new'])
+        return f'Property \'{path_str}\' was updated. From {old} to {new}'
 
     if type == 'remove':
         return f'Property \'{path_str}\' was removed'
 
     if type == 'add':
-        formatted_value = format_value(line['value'])
-        return f'Property \'{path_str}\' was added with value: {formatted_value}'
+        value = format_value(line['value'])
+        return f'Property \'{path_str}\' was added with value: {value}'
 
 
 def format_diff(diff):
