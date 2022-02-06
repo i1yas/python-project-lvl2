@@ -2,6 +2,48 @@ from gendiff.parsers import get_parser
 from gendiff.formatters import get_formatter
 
 
+def get_diff_item(key, keys, values):
+    old_keys, new_keys = keys
+    old_value, new_value = values
+    is_nested = isinstance(old_value, dict) and isinstance(new_value, dict)
+
+    if is_nested:
+        return {
+            'type': 'keep',
+            'key': key,
+            'children': get_diff(old_value, new_value)
+        }
+
+    if old_value == new_value:
+        return {
+            'type': 'keep',
+            'key': key,
+            'value': old_value
+        }
+
+    if key in old_keys and key in new_keys:
+        return {
+            'type': 'update',
+            'key': key,
+            'old': old_value,
+            'new': new_value
+        }
+
+    if key in old_keys:
+        return {
+            'type': 'remove',
+            'key': key,
+            'value': old_value
+        }
+
+    if key in new_keys:
+        return {
+            'type': 'add',
+            'key': key,
+            'value': new_value
+        }
+
+
 def get_diff(old, new):
     old_keys = old.keys()
     new_keys = new.keys()
@@ -11,48 +53,20 @@ def get_diff(old, new):
     diff = []
 
     for key in all_keys_in_order:
-        old_value = old.get(key)
-        new_value = new.get(key)
-        is_nested = isinstance(old_value, dict) and isinstance(new_value, dict)
+        keys = (
+            old_keys,
+            new_keys
+        )
+        values = (
+            old.get(key),
+            new.get(key)
+        )
 
-        if is_nested:
-            diff.append({
-                'type': 'keep',
-                'key': key,
-                'children': get_diff(old_value, new_value)
-            })
-            continue
-
-        if old_value == new_value:
-            diff.append({
-                'type': 'keep',
-                'key': key,
-                'value': old_value
-            })
-            continue
-
-        if key in old_keys and key in new_keys:
-            diff.append({
-                'type': 'update',
-                'key': key,
-                'old': old_value,
-                'new': new_value
-            })
-            continue
-
-        if key in old_keys:
-            diff.append({
-                'type': 'remove',
-                'key': key,
-                'value': old_value
-            })
-
-        if key in new_keys:
-            diff.append({
-                'type': 'add',
-                'key': key,
-                'value': new_value
-            })
+        diff.append(get_diff_item(
+            key,
+            keys,
+            values
+        ))
 
     return diff
 
