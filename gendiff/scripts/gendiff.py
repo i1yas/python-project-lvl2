@@ -14,7 +14,8 @@ def main():
     args = parser.parse_args()
     diff = generate_diff(
         args.first_line,
-        args.second_line
+        args.second_line,
+        type=args.FORMAT or 'json'
     )
     print(diff)
 
