@@ -15,7 +15,7 @@ def main():
     diff = generate_diff(
         args.first_line,
         args.second_line,
-        type=args.FORMAT or 'json'
+        type=args.FORMAT
     )
     print(diff)
 

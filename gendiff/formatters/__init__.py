@@ -1,8 +1,8 @@
-from gendiff.formatters import json_formatter, plain_formatter
+from gendiff.formatters import default_formatter, plain_formatter
 
 
 mapping = {
-    'json': json_formatter.format_diff,
+    'default': default_formatter.format_diff,
     'plain': plain_formatter.format_diff
 }
 
