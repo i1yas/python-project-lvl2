@@ -32,10 +32,19 @@ def test_gendiff_yaml(get_fixture_path):
         assert generate_diff(filepath1, filepath2) == expected
 
 
-def test_gendiff_plain(get_fixture_path):
+def test_gendiff_plain_output(get_fixture_path):
     with open(get_fixture_path('expected_plain.txt')) as f:
         expected = f.read()
         filepath1 = get_fixture_path('file1.json')
         filepath2 = get_fixture_path('file2.json')
 
         assert generate_diff(filepath1, filepath2, type='plain') == expected
+
+
+def test_gendiff_json_output(get_fixture_path):
+    with open(get_fixture_path('expected_json.txt')) as f:
+        expected = f.read()
+        filepath1 = get_fixture_path('file1.json')
+        filepath2 = get_fixture_path('file2.json')
+
+        assert generate_diff(filepath1, filepath2, type='json') == expected
