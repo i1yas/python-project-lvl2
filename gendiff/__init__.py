@@ -20,7 +20,7 @@ def get_diff(old, new):
             diff.append({
                 'type': 'keep',
                 'key': key,
-                'nested': get_diff(old_value, new_value)
+                'chlidren': get_diff(old_value, new_value)
             })
             continue
 
@@ -104,11 +104,11 @@ def format_diff(diff):
             type = line['type']
             key = line['key']
             value = line.get('value')
-            nested = line.get('nested')
+            chlidren = line.get('chlidren')
 
             formatted_value = ''
-            if nested:
-                formatted_value = walk(nested, depth + 1)
+            if chlidren:
+                formatted_value = walk(chlidren, depth + 1)
             else:
                 formatted_value = format_value(
                     value,
