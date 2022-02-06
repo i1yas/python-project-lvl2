@@ -79,6 +79,6 @@ def generate_diff(filepath1, filepath2, type=None):
     old = parse(open(filepath1))
     new = parse(open(filepath2))
     diff = get_diff(old, new)
-    format = get_formatter(type or 'default')
+    format = get_formatter(type or 'stylish')
 
     return format(diff)

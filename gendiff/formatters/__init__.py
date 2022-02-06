@@ -1,12 +1,12 @@
 from gendiff.formatters import (
-    default_formatter,
     plain_formatter,
-    json_formatter
+    json_formatter,
+    stylish_formatter
 )
 
 
 mapping = {
-    'default': default_formatter.format_diff,
+    'stylish': stylish_formatter.format_diff,
     'plain': plain_formatter.format_diff,
     'json': json_formatter.format_diff
 }
