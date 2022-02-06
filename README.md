@@ -9,4 +9,4 @@ Supports `json` and `yaml` format
 [![asciicast](https://asciinema.org/a/FDxJSfZGIQ3BU5ydEC0XMGq1D.svg)](https://asciinema.org/a/FDxJSfZGIQ3BU5ydEC0XMGq1D)
 
 Alternative output format
-[![asciicast](https://asciinema.org/a/sDkN6ucOu9I6xPwsPpG6e4OoN.svg)](https://asciinema.org/a/sDkN6ucOu9I6xPwsPpG6e4OoN)
+[![asciicast](https://asciinema.org/a/G1BOfcu2ty2PxGHxCQmygk1KB.svg)](https://asciinema.org/a/G1BOfcu2ty2PxGHxCQmygk1KB)
