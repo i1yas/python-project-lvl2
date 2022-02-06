@@ -45,4 +45,4 @@ def format_diff(diff):
         return result
 
     formatted_lines = walk(diff, [])
-    return '\n' + '\n'.join(formatted_lines)
+    return '\n'.join(formatted_lines)
